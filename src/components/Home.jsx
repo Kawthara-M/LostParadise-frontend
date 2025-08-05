@@ -17,7 +17,7 @@ const Home = () => {
       setPlacedComponents(response.data)
     }
     getGames()
-  }, [])
+  })
 
   const handlePlaceClick = (event, index) => {
     event.stopPropagation() // Prevent the click from going up to the parents?
@@ -70,11 +70,10 @@ const Home = () => {
             activeIndex !== null &&
             placedComponents.some((game) => game._id === activeIndex)
           }
-          gameIndex={
-            activeIndex !== null && placedComponents.includes(activeIndex)
-              ? activeIndex
-              : null
+          activeIndex={
+            activeIndex
           }
+          setShowPanel={setShowPanel}
         />
       )}
     </div>
