@@ -16,68 +16,88 @@ const Form = ({ addPosition }) => {
   const [formData, setFormData] = useState(initialState)
 
   const handleChange = (e) => {
+    console.log()
     setFormData({
       ...formData,
-      x: addPosition.x,
-      y: addPosition.y,
+      x:addPosition.x,
+      y:addPosition.y,
       [e.target.name]: e.target.value,
     })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await axios.post("http://localhost:3001/games/new", formData)
-    
-    console.log(response)
-  /*  setFormData({
+    const postData = new FormData()
+    Object.keys(formData).forEach((key) => {
+      postData.append(key, formData[key])
+    })
+    const response = await axios.post(
+      "http://localhost:3001/games/new",
+      postData
+    )
+
+
+    /*  setFormData({
       initialState,
     })*/
+  }
+
+  const handleImageChange = (event) => {
+    setFormData({...formData, image:event.target.files[0]})
   }
   return (
     <div className="form">
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <label htmlFor="name">Name:</label><br/>
+        <label htmlFor="name">Name:</label>
+        <br />
         <input
           type="text"
           id="name"
           name="name"
           onChange={handleChange}
           required
-        /><br/>
+        />
+        <br />
 
-        <label htmlFor="minimumAge">Minimum Age:</label><br/>
+        <label htmlFor="minimumAge">Minimum Age:</label>
+        <br />
         <input
           type="number"
           id="minimumAge"
           name="minimumAge"
-          value={formData.minimumAge}
+          // value={formData.minimumAge}
           onChange={handleChange}
-        /><br/>
+        />
+        <br />
 
-        <label htmlFor="minimumHeight">Minimum Height (cm):</label><br/>
+        <label htmlFor="minimumHeight">Minimum Height (cm):</label>
+        <br />
         <input
           type="number"
           id="minimumHeight"
           name="minimumHeight"
-          value={formData.minimumHeight}
+          // value={formData.minimumHeight}
           onChange={handleChange}
-        /><br/>
+        />
+        <br />
 
-        <label htmlFor="description">Description:</label><br/>
+        <label htmlFor="description">Description:</label>
+        <br />
         <textarea
           id="description"
           name="description"
-          value={formData.description}
+          // value={formData.description}
           onChange={handleChange}
           required
-        ></textarea><br/>
+        ></textarea>
+        <br />
 
         <label htmlFor="capacity">Capacity:</label>
         <input
           type="number"
           id="capacity"
           name="capacity"
-          value={formData.capacity}
+          // value={formData.capacity}
           onChange={handleChange}
           required
         />
@@ -87,7 +107,7 @@ const Form = ({ addPosition }) => {
           type="number"
           id="width"
           name="width"
-          value={formData.width}
+          // value={formData.width}
           onChange={handleChange}
         />
 
@@ -96,7 +116,7 @@ const Form = ({ addPosition }) => {
           type="number"
           id="height"
           name="height"
-          value={formData.height}
+          // value={formData.height}
           onChange={handleChange}
         />
 
@@ -106,7 +126,7 @@ const Form = ({ addPosition }) => {
           id="image"
           name="image"
           required
-          onChange={handleChange}
+          onChange={handleImageChange}
         />
 
         <button type="submit">Submit Game</button>

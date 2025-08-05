@@ -46,36 +46,30 @@ const Map = ({
       y: event.clientY - mapCoordinates.y,
     }
 
-    // console.log("mapCoordinates", mapCoordinates)
-    // console.log("relativeClickCoordinates", relativeClickCoordinates)
-
     const clickInCells = {
       x: Math.ceil(relativeClickCoordinates.x / mapUnit),
       y: Math.ceil(relativeClickCoordinates.y / mapUnit),
-    }
+    }    
+  
+    setAddPosition(clickInCells)
+    
     const clickedGame = placedComponents.some(
       (game) =>
         game.coordinates.x === clickInCells.x &&
-        game.coordinates.y === clickInCells.y
+      game.coordinates.y === clickInCells.y
     )
-
+    
     if (clickedGame) {
       handlePlaceClick(event, clickedGame)
     } else {
       setActiveGame(null)
       setShowPanel(true)
-      console.log(event.clientX)
-      console.log(event.clientY)
+      setAddPosition(clickInCells)
 
-      setAddPosition({
-        x: event.clientX,
-        y: event.clientY
-      })
       setPanelPos({
         x: event.clientX,
-        y: event.clientY
+        y: event.clientY,
       })
-      
     }
   }
   return (
