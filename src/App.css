@@ -4,7 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  justify-content: center;
+
   align-items: center;
   font-family: monospace;
   display: flex;
@@ -12,21 +12,23 @@ body {
 }
 .panel {
   height: 15rem;
+  max-height: 90vh;
   width: 14rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  justify-content: center;
+  /* justify-content: center;*/
   border: solid 1px rgb(152, 149, 149);
   border-radius: 10px;
   background-color: rgb(227, 209, 209);
   overflow-y: auto;
-  
 }
 .panel-absolute {
-  position: absolute;
-  z-index: 999;
+  position: fixed;
+  background: white;
+  border: 1px solid black;
+  padding: 10px 2px 0;
 }
 .container-item {
   border: solid 1px black;
@@ -38,27 +40,12 @@ body {
   width: 10rem;
   text-align: center;
 }
-.container-item:hover {
+.container-item:hover,
+.form button:hover {
   background-color: white;
   color: rgb(32, 26, 26);
   transform: scale(1.09);
-}
-/*temporary until we get actual map */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.place {
-  background-color: #dacdcd;
-  border: 2px solid #ddd;
-  padding: 10px 0;
-  font-size: 1.2em;
-  color: #333;
-  border-radius: 10px;
+  border: solid 1px black;
 }
 
 .game {
@@ -80,4 +67,48 @@ h3 {
 .info-part p {
   margin: 8px 0;
   padding: 0;
+}
+header {
+  display: flex;
+}
+nav {
+  display: flex;
+}
+.form {
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.form label {
+  font-weight: bold;
+  color: #222;
+}
+
+.form input,
+.form textarea,
+.form button {
+  padding: 0.4rem;
+  font-family: monospace;
+
+  border: 1px solid #999;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form input[type="file"] {
+  padding: 0.2rem;
+  background-color: #fff;
+}
+
+.form button {
+  background-color: rgb(2, 43, 7);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-top: 0.4rem;
 }

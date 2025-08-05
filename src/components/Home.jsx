@@ -11,6 +11,7 @@ const Home = () => {
 
   const [placedComponents, setPlacedComponents] = useState([]) // static for now, but it should include the index for all cells in grid that contain a game component
   const [activeGame, setActiveGame] = useState(null)
+  const [addPosition, setAddPosition] = useState(null)
 
   useEffect(() => {
     const getGames = async () => {
@@ -18,7 +19,7 @@ const Home = () => {
       setPlacedComponents(response.data)
     }
     getGames()
-  },[])
+  }, [])
 
   const handlePlaceClick = (event, game) => {
     event.stopPropagation() // Prevent the click from going up to the parents?
@@ -35,11 +36,7 @@ const Home = () => {
     }
 
     setPanelPos({ x: offsetX, y: offsetY })
-<<<<<<< HEAD
     setActiveGame(game)
-=======
-    setActiveIndex(index)
->>>>>>> Kawthar/info
     setShowPanel(true)
   }
 
@@ -49,38 +46,24 @@ const Home = () => {
 
   return (
     <div onClick={handleBodyClick}>
-      {<Map/>}
-      {/* should be replaced with actual map grid */}
-      {/* <div>
-        {placedComponents.map((game) => {
-<<<<<<< HEAD
+      {
+        <Map
+          placedComponents={placedComponents}
+          handlePlaceClick={handlePlaceClick}
+          setActiveGame={setActiveGame}
+          setShowPanel={setShowPanel}
+          setAddPosition={setAddPosition}
+          setPanelPos={setPanelPos}
+        />
+      }
 
-=======
-          
->>>>>>> Kawthar/info
-          return (
-            <>
-            <div
-              className="game"
-              key={game._id}
-              onClick={(e) => handlePlaceClick(e, game)}
-            >
-              {<Game game={game} />}
-            </div>
-            </>
-          )
-        })}
-      </div> */}
       {showPanel && (
         <Panel
           x={panelPos.x}
           y={panelPos.y}
-          hasGame={activeGame
-          }
-          activeGame={
-            activeGame
-          }
+          activeGame={activeGame}
           setShowPanel={setShowPanel}
+          addPosition={addPosition}
         />
       )}
     </div>

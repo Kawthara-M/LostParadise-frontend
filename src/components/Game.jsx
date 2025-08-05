@@ -1,12 +1,21 @@
-const Game = ({
-  game
-}) => {
+const Game = ({ game }) => {
+  const backendBaseUrl = "http://localhost:3001"
   return (
     <>
       {/* <div style={{`x:${game.coordinates.x}; y:${game.coordinates.y};`}}> */}
-      <div style={{position: 'absolute', left: `${game.coordinates.x}px`, top: `${game.coordinates.y}px`}} >
-        <h6>{game.description}</h6>
-      {/*   <img src={} alt="Cat" width="100" /> */}
+      <div
+        
+      >
+        <img
+          src={`${backendBaseUrl}/uploadedImages/${game.image}`} style={{
+          position: "absolute",
+          left: `${game.coordinates.x}px`,
+          top: `${game.coordinates.y}px`,
+          height:`${game.dimentions.height}px`,
+          width:`${game.dimentions.width}px`
+        }}
+          alt={game.name + " image"}
+        />
       </div>
     </>
   )
