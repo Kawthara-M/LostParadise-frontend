@@ -4,7 +4,7 @@ body {
   /* background-color: rgb(22, 1, 1); */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   font-family: monospace;
   display: flex;
@@ -59,6 +59,41 @@ body {
   border-radius: 10px;
 }
 
-.game{
-    min-height: 100px; /* or whatever fits */
+.game {
+  min-height: 100px; /* or whatever fits */
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ 
+  height: 60px; /* explicit height */
+  padding: 0 20px;
+  color: white; /* for contrast */
+}
+nav a {
+  padding: 0 6px;
+  text-decoration: none;
+  color: black;
+}
+nav {
+  display: flex;
+}
+.search {
+  border-radius: 15px;
+  border: solid 1px black;
+  width: 10rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.searchIcon {
+  padding: 0 8px;
+}
+.iconContainer {
+  border-radius: 50%;
+  border: solid 1px black;
+  padding: 6px 6px;
+  display: flex;
 }

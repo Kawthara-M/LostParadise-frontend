@@ -35,7 +35,6 @@ const Home = () => {
     }
 
     setPanelPos({ x: offsetX, y: offsetY })
-    console.log("index" + index)
     setActiveIndex(index)
     setShowPanel(true)
   }
@@ -50,9 +49,7 @@ const Home = () => {
       {/* should be replaced with actual map grid */}
       {/* <div>
         {placedComponents.map((game) => {
-          {
-            console.log("game", game._id)
-          }
+          
           return (
             <>
             <div
