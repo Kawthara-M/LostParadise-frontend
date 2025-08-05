@@ -26,51 +26,62 @@ const Form = ({ addPosition }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await axios.post("http://localhost:3001/games/new", formData)
-    
+    const response = await axios.post(
+      "http://localhost:3001/games/new",
+      formData
+    )
+
     console.log(response)
-  /*  setFormData({
+    /*  setFormData({
       initialState,
     })*/
   }
   return (
     <div className="form">
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <label htmlFor="name">Name:</label><br/>
+        <label htmlFor="name">Name:</label>
+        <br />
         <input
           type="text"
           id="name"
           name="name"
           onChange={handleChange}
           required
-        /><br/>
+        />
+        <br />
 
-        <label htmlFor="minimumAge">Minimum Age:</label><br/>
+        <label htmlFor="minimumAge">Minimum Age:</label>
+        <br />
         <input
           type="number"
           id="minimumAge"
           name="minimumAge"
           value={formData.minimumAge}
           onChange={handleChange}
-        /><br/>
+        />
+        <br />
 
-        <label htmlFor="minimumHeight">Minimum Height (cm):</label><br/>
+        <label htmlFor="minimumHeight">Minimum Height (cm):</label>
+        <br />
         <input
           type="number"
           id="minimumHeight"
           name="minimumHeight"
           value={formData.minimumHeight}
           onChange={handleChange}
-        /><br/>
+        />
+        <br />
 
-        <label htmlFor="description">Description:</label><br/>
+        <label htmlFor="description">Description:</label>
+        <br />
         <textarea
           id="description"
           name="description"
           value={formData.description}
           onChange={handleChange}
           required
-        ></textarea><br/>
+        ></textarea>
+        <br />
 
         <label htmlFor="capacity">Capacity:</label>
         <input
