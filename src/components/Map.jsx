@@ -1,16 +1,15 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import "./../map.css"
 import Game from "./Game"
+import Panel from "./Panel"
 
 useRef
-const Map = ({
-  placedComponents,
-  handlePlaceClick,
-  setActiveGame,
-  setShowPanel,
-  setAddPosition,
-  setPanelPos,
-}) => {
+const Map = ({ placedComponents, setShowPanel,showPanel }) => {
+  // states to toggle panel
+  const [panelPos, setPanelPos] = useState({ x: 0, y: 0 })
+  const [activeGame, setActiveGame] = useState(null);
+const [addPosition, setAddPosition] = useState(null);
+
   const mapUnit = 50
   const height = 15
   const widht = 30
@@ -33,7 +32,24 @@ const Map = ({
       alignItems: "center",
     },
   }
+  const handlePlaceClick = (event, game) => {
+    event.stopPropagation() // Prevent the click from going up to the parents?
+    let offsetX
+    let offsetY
+    const rect = event.target.getBoundingClientRect()
 
+    if (rect.left + rect.width + rect.width * 0.05 > window.innerWidth) {
+      offsetX = rect.x
+      offsetY = rect.top + rect.height
+    } else {
+      offsetX = rect.left + rect.width
+      offsetY = rect.top
+    }
+
+    setPanelPos({ x: offsetX, y: offsetY })
+    setActiveGame(game)
+    setShowPanel(true)
+  }
   const mapClick = (event) => {
     console.log("Map clicked", event)
 
@@ -81,17 +97,21 @@ const Map = ({
           onClick={(event) => mapClick(event)}
         >
           {placedComponents.map((game) => {
-            const x = game.coordinates?.x
-            const y = game.coordinates?.y
-
             return (
-              <div
-                key={game._id}
-                style={{ top: `${y}px`, left: `${x}px` }}
-                onClick={(e) => handlePlaceClick(e, game)}
-              >
-                <Game game={game} />
-              </div>
+              <>
+                <div key={game._id} onClick={(e) => handlePlaceClick(e, game)}>
+                  <Game game={game} />
+                </div>
+                {showPanel && (
+                  <Panel
+                    x={panelPos.x}
+                    y={panelPos.y}
+                    activeGame={activeGame}
+                    setShowPanel={setShowPanel}
+                    addPosition={addPosition}
+                  />
+                )}
+              </>
             )
           })}
         </div>

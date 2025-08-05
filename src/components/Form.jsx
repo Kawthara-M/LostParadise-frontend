@@ -36,7 +36,6 @@ const Form = ({ addPosition }) => {
       postData
     )
 
-
     /*  setFormData({
       initialState,
     })*/

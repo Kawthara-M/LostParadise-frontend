@@ -5,13 +5,13 @@ import Form from "./Form"
 import PanelMenu from "./PanelMenu"
 
 const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
-  const [view, setView] = useState(activeGame ? "menu" : "add")
+  const [view, setView] = useState("menu")
   const deleteGame = async () => {
     await axios.delete(`http://localhost:3001/games/${activeGame._id}`)
     setShowPanel(false)
   }
   useEffect(() => {
-    setView(activeGame ? "menu" : "add")
+    setView("menu")
   }, [x, y, activeGame])
 
   return (
@@ -45,7 +45,14 @@ const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
 
       {view === "add" && (
         <>
-          <Form addPosition={addPosition}></Form>
+          <div className="container-item" onClick={() => setView("Form")}>
+            Add
+          </div>
+        </>
+      )}
+      {view === "Form" && (
+        <>
+          <Form addPosition={addPosition} />
         </>
       )}
     </div>
