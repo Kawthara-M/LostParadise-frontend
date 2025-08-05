@@ -9,7 +9,7 @@ const Home = () => {
   const [showPanel, setShowPanel] = useState(false)
 
   const [placedComponents, setPlacedComponents] = useState([]) // static for now, but it should include the index for all cells in grid that contain a game component
-  const [activeIndex, setActiveIndex] = useState(null)
+  const [activeGame, setActiveGame] = useState(null)
 
   useEffect(() => {
     const getGames = async () => {
@@ -19,7 +19,7 @@ const Home = () => {
     getGames()
   })
 
-  const handlePlaceClick = (event, index) => {
+  const handlePlaceClick = (event, game) => {
     event.stopPropagation() // Prevent the click from going up to the parents?
     let offsetX
     let offsetY
@@ -34,8 +34,7 @@ const Home = () => {
     }
 
     setPanelPos({ x: offsetX, y: offsetY })
-    console.log("index" + index)
-    setActiveIndex(index)
+    setActiveGame(game)
     setShowPanel(true)
   }
 
@@ -45,17 +44,14 @@ const Home = () => {
 
   return (
     <div onClick={handleBodyClick}>
-      {/* should be replaced with actual map grid */}
       <div>
         {placedComponents.map((game) => {
-          {
-            console.log("game", game._id)
-          }
+
           return (
             <div
               className="game"
               key={game._id}
-              onClick={(e) => handlePlaceClick(e, game._id)}
+              onClick={(e) => handlePlaceClick(e, game)}
             >
               {<Game game={game} />}
             </div>
@@ -66,12 +62,10 @@ const Home = () => {
         <Panel
           x={panelPos.x}
           y={panelPos.y}
-          hasGame={
-            activeIndex !== null &&
-            placedComponents.some((game) => game._id === activeIndex)
+          hasGame={activeGame
           }
-          activeIndex={
-            activeIndex
+          activeGame={
+            activeGame
           }
           setShowPanel={setShowPanel}
         />

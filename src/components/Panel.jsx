@@ -3,10 +3,10 @@ import Info from "./Info"
 import axios from "axios"
 import PanelMenu from "./PanelMenu"
 
-const Panel = ({ x, y, hasGame, activeIndex, setShowPanel }) => {
+const Panel = ({ x, y, hasGame, activeGame, setShowPanel }) => {
 
   const deleteGame= async ()=> {
-    await axios.delete(`http://localhost:3001/games/${activeIndex}`)
+    await axios.delete(`http://localhost:3001/games/${activeGame._id}`)
     setShowPanel(false)
 
   }
@@ -14,7 +14,6 @@ const Panel = ({ x, y, hasGame, activeIndex, setShowPanel }) => {
   useEffect(() => {
     setView("menu")
   }, [x, y])
-  console.log(x, y)
 
   return (
     <div
@@ -26,7 +25,7 @@ const Panel = ({ x, y, hasGame, activeIndex, setShowPanel }) => {
 
       {view === "info" && (
         <>
-          <Info activeIndex={activeIndex} />
+          <Info activeGame={activeGame} />
         </>
       )}
 

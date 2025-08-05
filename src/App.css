@@ -1,7 +1,6 @@
 body {
   margin: 0;
   height: 100svh;
-  /* background-color: rgb(22, 1, 1); */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,16 +8,18 @@ body {
   width: 100svw;
 }
 .panel {
-  height: 14rem;
+  height: 15rem;
   width: 14rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+
+  justify-content: center;
   border: solid 1px rgb(152, 149, 149);
   border-radius: 10px;
   background-color: rgb(227, 209, 209);
-  overflow-y: auto; /* in case we're showing forms within panel*/
+  overflow-y: auto;
+  
 }
 .panel-absolute {
   position: absolute;
@@ -57,6 +58,23 @@ body {
   border-radius: 10px;
 }
 
-.game{
-    min-height: 100px; /* or whatever fits */
+.game {
+  min-height: 100px;
+}
+h3 {
+  margin: 0 2px;
+}
+
+.info {
+  margin: 10px 10px;
+}
+
+.info-part {
+  margin: 2px 10px;
+  padding: 0;
+}
+.info-part h4,
+.info-part p {
+  margin: 8px 0;
+  padding: 0;
 }
