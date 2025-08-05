@@ -11,6 +11,7 @@ function App() {
   return (
     <>
     <Header />
+    
       <main>
         <Routes>
           <Route path="/games" element={<Home />} />
