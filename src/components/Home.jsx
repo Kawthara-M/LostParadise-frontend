@@ -35,11 +35,9 @@ const Home = () => {
     }
 
     setPanelPos({ x: offsetX, y: offsetY })
-<<<<<<< HEAD
+
     setActiveGame(game)
-=======
-    setActiveIndex(index)
->>>>>>> Kawthar/info
+
     setShowPanel(true)
   }
 
@@ -50,27 +48,8 @@ const Home = () => {
   return (
     <div onClick={handleBodyClick}>
       {<Map/>}
-      {/* should be replaced with actual map grid */}
-      {/* <div>
-        {placedComponents.map((game) => {
-<<<<<<< HEAD
+ 
 
-=======
-          
->>>>>>> Kawthar/info
-          return (
-            <>
-            <div
-              className="game"
-              key={game._id}
-              onClick={(e) => handlePlaceClick(e, game)}
-            >
-              {<Game game={game} />}
-            </div>
-            </>
-          )
-        })}
-      </div> */}
       {showPanel && (
         <Panel
           x={panelPos.x}

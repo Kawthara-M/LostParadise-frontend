@@ -52,7 +52,9 @@ const Map = () => {
           className="map"
           style={styles.map}
           onClick={(event) => mapClick(event)}
-        ></div>
+        >
+          
+        </div>
       </div>
     </>
   )
