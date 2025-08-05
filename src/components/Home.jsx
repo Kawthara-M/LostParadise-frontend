@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import Game from "./Game"
 import Panel from "./Panel"
+import Map from "./Map"
 
 const Home = () => {
   // states to toggle panel
@@ -17,7 +18,7 @@ const Home = () => {
       setPlacedComponents(response.data)
     }
     getGames()
-  })
+  },[])
 
   const handlePlaceClick = (event, index) => {
     event.stopPropagation() // Prevent the click from going up to the parents?
@@ -44,11 +45,13 @@ const Home = () => {
 
   return (
     <div onClick={handleBodyClick}>
+      {<Map/>}
       {/* should be replaced with actual map grid */}
-      <div>
+      {/* <div>
         {placedComponents.map((game) => {
           
           return (
+            <>
             <div
               className="game"
               key={game._id}
@@ -56,9 +59,10 @@ const Home = () => {
             >
               {<Game game={game} />}
             </div>
+            </>
           )
         })}
-      </div>
+      </div> */}
       {showPanel && (
         <Panel
           x={panelPos.x}
