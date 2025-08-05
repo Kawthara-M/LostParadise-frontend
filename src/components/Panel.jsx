@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react"
 import Info from "./Info"
+import axios from "axios"
 import PanelMenu from "./PanelMenu"
 
 const Panel = ({ x, y, hasGame, gameIndex }) => {
+
+  const deleteGame= async (gameId)=> {
+    await axios.delete(`http://localhost:3001/games/${gameIndex}`)
+
+  }
   const [view, setView] = useState("menu")
   useEffect(() => {
     setView("menu")
@@ -13,7 +19,7 @@ const Panel = ({ x, y, hasGame, gameIndex }) => {
     <div
       className="panel panel-absolute "
       onClick={(e) => e.stopPropagation()}
-      style={{ position: 'absolute', top: `${y}px`, left: `${x}px` }}
+      style={{ top: `${y}px`, left: `${x}px` }}
     >
       {view === "menu" && <PanelMenu hasGame={hasGame} setView={setView} />}
 
@@ -25,7 +31,14 @@ const Panel = ({ x, y, hasGame, gameIndex }) => {
 
       {view === "edit" && <></>}
 
-      {view === "delete" && <></>}
+      {view === "delete" && (
+        <>
+          <div className="container-item" onClick={()=>deleteGame()}>Sure</div>
+          <div className="container-item" onClick={() => setView("menu")}>
+            Cancel
+          </div>
+        </>
+      )}
 
       {view === "add" && <></>}
     </div>

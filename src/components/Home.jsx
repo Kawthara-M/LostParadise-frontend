@@ -14,7 +14,6 @@ const Home = () => {
   useEffect(() => {
     const getGames = async () => {
       const response = await axios.get(" http://localhost:3001/games")
-      console.log(response)
       setPlacedComponents(response.data)
     }
     getGames()
@@ -24,9 +23,9 @@ const Home = () => {
     event.stopPropagation() // Prevent the click from going up to the parents?
     let offsetX
     let offsetY
-    const rect = event.currentTarget.getBoundingClientRect()
+    const rect = event.target.getBoundingClientRect()
 
-    if (rect.left + rect.width + (rect.width * 0.05 )> window.innerWidth) {
+    if (rect.left + rect.width + rect.width * 0.05 > window.innerWidth) {
       offsetX = rect.x
       offsetY = rect.top + rect.height
     } else {
@@ -35,6 +34,7 @@ const Home = () => {
     }
 
     setPanelPos({ x: offsetX, y: offsetY })
+    console.log("index" + index)
     setActiveIndex(index)
     setShowPanel(true)
   }
@@ -46,19 +46,29 @@ const Home = () => {
   return (
     <div onClick={handleBodyClick}>
       {/* should be replaced with actual map grid */}
-      <div >
-        {placedComponents.map((game, index) => (
-          <div key={game._id} onClick={(e) => handlePlaceClick(e, game._id)}>
-            { <Game game={game} />}
-          </div>
-        ))}
+      <div>
+        {placedComponents.map((game) => {
+          {
+            console.log("game", game._id)
+          }
+          return (
+            <div
+              className="game"
+              key={game._id}
+              onClick={(e) => handlePlaceClick(e, game._id)}
+            >
+              {<Game game={game} />}
+            </div>
+          )
+        })}
       </div>
       {showPanel && (
         <Panel
           x={panelPos.x}
           y={panelPos.y}
           hasGame={
-            activeIndex !== null && placedComponents.includes(activeIndex)
+            activeIndex !== null &&
+            placedComponents.some((game) => game._id === activeIndex)
           }
           gameIndex={
             activeIndex !== null && placedComponents.includes(activeIndex)

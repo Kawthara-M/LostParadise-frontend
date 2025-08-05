@@ -56,3 +56,7 @@ body {
   color: #333;
   border-radius: 10px;
 }
+
+.game{
+    min-height: 100px; /* or whatever fits */
+}
