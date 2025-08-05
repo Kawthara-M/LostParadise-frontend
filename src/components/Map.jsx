@@ -96,12 +96,14 @@ const [addPosition, setAddPosition] = useState(null);
           style={styles.map}
           onClick={(event) => mapClick(event)}
         >
+          {console.log(placedComponents)}
           {placedComponents.map((game) => {
             return (
               <>
-                <div key={game._id} onClick={(e) => handlePlaceClick(e, game)}>
-                  <Game game={game} />
-                </div>
+                {/* <div key={game._id} onClick={(e) => handlePlaceClick(e, game)}> */}
+                   {/* this division is causing the game positioning to now work, but when I remove it it does the onlick is wont work */}
+                  <Game game={game} key={game._id} onClick={(e) => handlePlaceClick(e, game)} />
+                {/* </div>   */}
                 {showPanel && (
                   <Panel
                     x={panelPos.x}
