@@ -10,7 +10,7 @@
 Pixel Park is an interactive game featuring a customizable map where users can design their own unique theme park layout. Every time the user clicks on a specific area of the map, a form appears allowing them to add or edit game elements such as rides, attractions, and facilities. The system enables real-time interaction, making it easy to build, manage, and personalize every part of the park experience.
 
 
-| Deployed version of **[Pixel Park]()** |
+| Deployed version of **[Pixel Park](https://pixel-park.surge.sh/)** |
 
 
 ## Technologies Used
