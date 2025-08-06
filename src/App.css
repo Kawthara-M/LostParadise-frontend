@@ -4,8 +4,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-=========
-  justify-content: center;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4ac7773c0d9559f0b8c9735e514da3e1f707f147
   align-items: center;
   font-family: monospace;
   display: flex;

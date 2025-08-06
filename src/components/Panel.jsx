@@ -3,6 +3,7 @@ import Info from "./Info"
 import axios from "axios"
 import Form from "./Form"
 import PanelMenu from "./PanelMenu"
+import EditForm from "./EditForm"
 
 const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
   const [view, setView] = useState("menu")
@@ -30,7 +31,8 @@ const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
         </>
       )}
 
-      {view === "edit" && <></>}
+      {view === "Edit" && (
+      <EditForm/>)}
 
       {view === "delete" && (
         <>
