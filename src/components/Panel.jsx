@@ -19,7 +19,9 @@ const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
   return (
     <div
       className="panel panel-absolute "
-      onClick={(e) => e.stopPropagation()}
+      onClick={(e) =>{ e.stopPropagation()
+        setShowPanel(false)
+      }}
       style={{ top: `${y}px`, left: `${x}px` }}
     >
       {view === "menu" && (

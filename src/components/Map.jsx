@@ -72,7 +72,6 @@ const Map = ({ placedComponents, setShowPanel, showPanel }) => {
         game.coordinates.x === clickInCells.x &&
         game.coordinates.y === clickInCells.y
     )
-    setAddPosition(clickInCells)
 
     if (clickedGame) {
       handlePlaceClick(event, clickedGame)

@@ -19,8 +19,8 @@ const Form = ({ addPosition,setShowPanel }) => {
     console.log()
     setFormData({
       ...formData,
-      x:addPosition.x,
-      y:addPosition.y,
+      x: addPosition.x,
+      y: addPosition.y,
       [e.target.name]: e.target.value,
     })
   }
@@ -35,11 +35,15 @@ const Form = ({ addPosition,setShowPanel }) => {
       "http://localhost:3001/games/new",
       postData
     )
+
+    setFormData({
+      initialState,
+    })
     setShowPanel(false)
-}
+  }
 
   const handleImageChange = (event) => {
-    setFormData({...formData, image:event.target.files[0]})
+    setFormData({ ...formData, image: event.target.files[0] })
   }
   return (
     <div className="form">
@@ -51,6 +55,7 @@ const Form = ({ addPosition,setShowPanel }) => {
           id="name"
           name="name"
           onChange={handleChange}
+          autoComplete="off"
           required
         />
         <br />
@@ -98,7 +103,7 @@ const Form = ({ addPosition,setShowPanel }) => {
           required
         />
 
-        <label htmlFor="width">Width:</label>
+        <label htmlFor="width">Width (px):</label>
         <input
           type="number"
           id="width"
@@ -107,7 +112,7 @@ const Form = ({ addPosition,setShowPanel }) => {
           onChange={handleChange}
         />
 
-        <label htmlFor="height">Height:</label>
+        <label htmlFor="height">Height (px):</label>
         <input
           type="number"
           id="height"
