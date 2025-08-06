@@ -1,14 +1,28 @@
-const Game = ({
-  game
-}) => {
+import globals from "./../globals.json"
+const Game = ({ game,onClick }) => {
+  const backendBaseUrl = "http://localhost:3001"
+  {
+    console.log(game)
+  }
   return (
-    <>
-      {/* <div style={{`x:${game.coordinates.x}; y:${game.coordinates.y};`}}> */}
-      <div style={{position: 'absolute', left: `${game.coordinates.x}px`, top: `${game.coordinates.y}px`}} >
-        <h6>{game.description}</h6>
-      {/*   <img src={} alt="Cat" width="100" /> */}
-      </div>
-    </>
+    
+      <img
+        src={`${backendBaseUrl}/uploadedImages/${game.image}`}
+        style={{
+          // position: "absolute",
+          gridColumn: `${game.coordinates.x} / ${
+            game.dimentions.height + game.coordinates.x
+          }`,
+          gridRow: `${game.coordinates.y} / ${
+            game.dimentions.width + game.coordinates.y
+          }`,
+          height: `${game.dimentions.height * globals.mapUnit}px`,
+          width: `${game.dimentions.width * globals.mapUnit}px`,
+        }}
+        alt={game.name + " image"}
+        onClick={onClick}
+      />
+    
   )
 }
 export default Game
