@@ -20,7 +20,7 @@ const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
     <div
       className="panel panel-absolute "
       onClick={(e) =>{ e.stopPropagation()
-        setShowPanel(false)
+        // setShowPanel(false)
       }}
       style={{ top: `${y}px`, left: `${x}px` }}
     >
