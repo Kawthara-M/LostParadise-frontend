@@ -1,7 +1,7 @@
 # Pixel Park - Frontend Repository -
 
 **By:**  Kawthar | Yousif | Maryam | Qassim<br>
-**Date:** August / 04/ 2025 
+
 
 
 
@@ -43,7 +43,9 @@ Pixel Park is an interactive game featuring a customizable map where users can d
 
 
 ### **Future Updates**
----
+- A better hirearchy of components
+- Implement Search Functionality
+- Responsivness to different devices
 
 - 🔍 Search Feature – Add a search bar to easily find games or areas.
 

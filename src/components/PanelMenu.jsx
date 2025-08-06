@@ -1,9 +1,8 @@
-
-const PanelMenu = ({ hasGame, setView }) => {
+const PanelMenu = ({ activeGame, setView }) => {
   return (
     <>
-      {!hasGame ? (
-        <div className="container-item" onClick={() => setView("add")}>
+      {!activeGame ? (
+        <div className="container-item" onClick={() => setView("Form")}>
           Add
         </div>
       ) : (
