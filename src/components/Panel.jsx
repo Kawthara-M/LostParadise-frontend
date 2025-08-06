@@ -8,23 +8,33 @@ import EditForm from "./EditForm"
 const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
   const [view, setView] = useState("menu")
   const deleteGame = async () => {
-    await axios.delete(`http://localhost:3001/games/${activeGame._id}`)
+    const response = await axios.delete(`http://localhost:3001/games/${activeGame._id}`)
+    console.log(response)
     setShowPanel(false)
   }
 
 
   useEffect(() => {
     setView("menu")
-  }, [x, y, activeGame])
+  }, [x, y])
 
   return (
     <div
       className="panel panel-absolute "
-      onClick={(e) =>{ e.stopPropagation()
-        // setShowPanel(false)
-      }}
       style={{ top: `${y}px`, left: `${x}px` }}
+      onClick={(e) => {
+        e.stopPropagation()
+      }}
     >
+      <div
+        onClick={(e) => {
+          e.stopPropagation()
+          setShowPanel(false)
+        }}
+      >
+        x
+      </div>
+
       {view === "menu" && (
         <PanelMenu activeGame={activeGame} setView={setView} />
       )}
@@ -34,8 +44,14 @@ const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
           <Info activeGame={activeGame} />
         </>
       )}
-      {console.log(view)}
-      {view === "edit" && (<EditForm activeGame={activeGame} />)}
+
+      {view === "edit" && (
+        <>
+          <>
+            <Form addPosition={addPosition} setShowPanel={setShowPanel} />
+          </>
+        </>
+      )}
 
       {view === "delete" && (
         <>
