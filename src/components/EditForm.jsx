@@ -1,15 +1,15 @@
 import { useState } from "react"
 import axios from "axios"
-const EditForm=({activeGame})=>{
-     let initialState={
-    name:"",
+const EditForm = ({ activeGame }) => {
+  let initialState = {
+    name: "",
     minimumAge: "",
     minimumHeight: "",
     description: "",
     capacity: "",
     image: null,
- }
-   const [formData, setFormData] = useState(initialState)
+  }
+  const [formData, setFormData] = useState(initialState)
   const handleChange = (e) => {
     console.log()
     setFormData({
@@ -17,20 +17,24 @@ const EditForm=({activeGame})=>{
       [e.target.name]: e.target.value,
     })
   }
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const postData = new FormData()
+    const putData = new FormData()
+    
     Object.keys(formData).forEach((key) => {
-      postData.append(key, formData[key])
+      putData.append(key, formData[key])
     })
-    const response = await axios.post(
-      `http://localhost:3001/games/${activeGame._id}}`,
-      postData
-    )}
-      const handleImageChange = (event) => {
-    setFormData({...formData, image:event.target.files[0]})
-    return(
-           <div className="form">
+    
+    await axios.put(`http://localhost:3001/games/${activeGame._id}`, putData)
+  }
+
+  const handleImageChange = (event) => {
+    setFormData({ ...formData, image: event.target.files[0] })
+    console.log( event.target.files[0])
+  }
+
+  return (
+    <div className="form">
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <label htmlFor="name">Name:</label>
         <br />
@@ -38,7 +42,7 @@ const EditForm=({activeGame})=>{
           type="text"
           id="name"
           name="name"
-          value={activeGame.name}
+          placeholder={activeGame.name}
           onChange={handleChange}
           required
         />
@@ -50,7 +54,7 @@ const EditForm=({activeGame})=>{
           type="number"
           id="minimumAge"
           name="minimumAge"
-          value={activeGame.minimumAge}
+          placeholder={activeGame.minimumAge}
           onChange={handleChange}
         />
         <br />
@@ -61,7 +65,7 @@ const EditForm=({activeGame})=>{
           type="number"
           id="minimumHeight"
           name="minimumHeight"
-          value={activeGame.minimumHeight}
+          placeholder={activeGame.minimumHeight}
           onChange={handleChange}
         />
         <br />
@@ -71,7 +75,7 @@ const EditForm=({activeGame})=>{
         <textarea
           id="description"
           name="description"
-          value={activeGame.description}
+          placeholder={activeGame.description}
           onChange={handleChange}
           required
         ></textarea>
@@ -88,6 +92,6 @@ const EditForm=({activeGame})=>{
         <button type="submit">Submit Game</button>
       </form>
     </div>
-    )
-}}
+  )
+}
 export default EditForm

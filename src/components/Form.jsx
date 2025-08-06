@@ -31,6 +31,7 @@ const Form = ({ addPosition }) => {
     Object.keys(formData).forEach((key) => {
       postData.append(key, formData[key])
     })
+    // console.log(postData)
     const response = await axios.post(
       "http://localhost:3001/games/new",
       postData

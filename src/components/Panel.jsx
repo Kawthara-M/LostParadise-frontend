@@ -30,9 +30,8 @@ const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
           <Info activeGame={activeGame} />
         </>
       )}
-
-      {view === "Edit" && (
-      <EditForm/>)}
+      {console.log(view)}
+      {view === "edit" && (<EditForm activeGame={activeGame} />)}
 
       {view === "delete" && (
         <>
