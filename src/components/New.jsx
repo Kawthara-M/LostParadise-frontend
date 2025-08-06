@@ -1,8 +1,8 @@
 import { useState } from "react"
-import {newRecored} from '../services/GameForm'
+import { newRecored } from "../services/GameForm"
 // import { useNavigate } from 'react-router-dom'
 
-
+  // let navigate=useNavigate()
 
 const New=()=>{
 // let navigate=useNavigate()
@@ -36,26 +36,55 @@ const handleSubmit=async(e)=>{
     width:payload.width,
     height:payload.height,
     image:payload.image
-    })
+   })
     // navigate('/index')
-}
+  }
 
-    return(
-        <form className="new" onSubmit={handleSubmit} encType="multipart/form-data">
-            <label htmlFor="name">name</label>
-            <input type="text" id="name" name="name" required onChange={handleChange} />
+  return (
+    <form className="new" onSubmit={handleSubmit} encType="multipart/form-data">
+      <label htmlFor="name">name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        onChange={handleChange}
+      />
 
-            <label htmlFor="minimumAge">minimumAge</label>
-            <input type="text" id="minimumAge" name="minimumAge" onChange={handleChange} />
+      <label htmlFor="minimumAge">minimumAge</label>
+      <input
+        type="text"
+        id="minimumAge"
+        name="minimumAge"
+        onChange={handleChange}
+      />
 
-            <label htmlFor="minimumHeight">minimumHeight</label>
-            <input type="text" id="minimumHeight" name="minimumHeight" onChange={handleChange} />
+      <label htmlFor="minimumHeight">minimumHeight</label>
+      <input
+        type="text"
+        id="minimumHeight"
+        name="minimumHeight"
+        onChange={handleChange}
+      />
 
-            <label htmlFor="description">description</label>
-            <input type="text" id="description" name="description" required onChange={handleChange} />
+      <label htmlFor="description">description</label>
+      <input
+        type="text"
+        id="description"
+        name="description"
+        required
+        onChange={handleChange}
+      />
 
-            <label htmlFor="capacity">capacity</label>
-            <input type="text" id="capacity" name="capacity" required onChange={handleChange} />
+      <label htmlFor="capacity">capacity</label>
+      <input
+        type="text"
+        id="capacity"
+        name="capacity"
+        required
+        onChange={handleChange}
+      />
+
 
             <label htmlFor="x">x</label>
             <input type="text" id="x" name="x" onChange={handleChange} />
@@ -74,11 +103,9 @@ const handleSubmit=async(e)=>{
             <label htmlFor="image">image</label>
             <input type="file" id="image" name="image" onChange={handleChange} />
 
-            <button>
-                submit
-            </button>
-        </form>
-    )
+      <button>submit</button>
+    </form>
+  )
 
 }
 export default New
