@@ -48,7 +48,7 @@ const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
       {view === "edit" && (
         <>
           <>
-            <Form addPosition={addPosition} setShowPanel={setShowPanel} />
+            <EditForm activeGame={activeGame} setShowPanel={setShowPanel} />
           </>
         </>
       )}

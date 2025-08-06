@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
-const EditForm = ({ activeGame }) => {
+const EditForm = ({ activeGame,setShowPanel }) => {
   let initialState = {
     name: "",
     minimumAge: "",
@@ -26,6 +26,7 @@ const EditForm = ({ activeGame }) => {
     })
     
     await axios.put(`http://localhost:3001/games/${activeGame._id}`, putData)
+    setShowPanel(false)
   }
 
   const handleImageChange = (event) => {
