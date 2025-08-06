@@ -16,13 +16,10 @@ const Home = () => {
     getGames()
   }, [])
 
-  const handleBodyClick = () => {
-    setShowPanel(false)
-  }
+
   return (
     <>
       <Map
-        onClick={handleBodyClick}
         placedComponents={placedComponents}
         setShowPanel={setShowPanel}
         showPanel={showPanel}
