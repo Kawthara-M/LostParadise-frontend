@@ -14,7 +14,7 @@ const Home = () => {
       setPlacedComponents(response.data)
     }
     getGames()
-  }, [])
+  }, [showPanel])
 
 
   return (

@@ -39,6 +39,7 @@ const Map = ({ placedComponents, setShowPanel, showPanel }) => {
     const rect = event.target.getBoundingClientRect()
 
     if (rect.left + rect.width + rect.width * 0.05 > window.innerWidth) {
+      console.log("reached here")
       offsetX = rect.x
       offsetY = rect.top + rect.height
     } else {
@@ -47,6 +48,7 @@ const Map = ({ placedComponents, setShowPanel, showPanel }) => {
     }
 
     setPanelPos({ x: offsetX, y: offsetY })
+    console.log(game)
     setActiveGame(game)
     setShowPanel(true)
   }
@@ -67,24 +69,45 @@ const Map = ({ placedComponents, setShowPanel, showPanel }) => {
       y: Math.ceil(relativeClickCoordinates.y / mapUnit),
     }
 
-    const clickedGame = placedComponents.some(
-      (game) =>
-        game.coordinates.x === clickInCells.x &&
-        game.coordinates.y === clickInCells.y
-    )
+    console.log(clickInCells.x + " " + clickInCells.y)
 
-    if (clickedGame) {
-      handlePlaceClick(event, clickedGame)
+    // if game clicked
+    if (clickInCells.x === 1 && clickInCells.y === 1) {
+      console.log("game clicked!")
+      const clickedGame = placedComponents.filter((game) =>
+        // game.coordinates.x === mapCoordinates.x &&
+        // game.coordinates.y === mapCoordinates.y
+        console.log(
+          " game x: " +
+            game.coordinates.x +
+            " " +
+            "(mapCoordinates.x : " +
+            mapCoordinates.x
+        )
+      )
+      // console.log(clickedGame)
+      // handlePlaceClick(event, clickedGame)
     } else {
       setShowPanel(true)
       setActiveGame(null)
       setAddPosition(clickInCells)
+    }
 
-      setPanelPos({
-        x: event.clientX,
+    /*  if (event.clientX+( mapUnit*2) > window.innerWidth) {
+      console.log(event.clientX+( mapUnit*2) )
+         setPanelPos({
+        x: event.clientX-(event.clientX*.1),
         y: event.clientY,
       })
-    }
+     
+    } else {
+      
+    }*/
+
+    setPanelPos({
+      x: event.clientX,
+      y: event.clientY,
+    })
   }
   return (
     <>
@@ -94,7 +117,7 @@ const Map = ({ placedComponents, setShowPanel, showPanel }) => {
           style={styles.map}
           onClick={(event) => mapClick(event)}
         >
-          {console.log(placedComponents)}
+          {/* {console.log(placedComponents)} */}
           {placedComponents.map((game) => {
             return (
               <>
