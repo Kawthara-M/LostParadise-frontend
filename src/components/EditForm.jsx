@@ -1,51 +1,38 @@
 import { useState } from "react"
 import axios from "axios"
-const Form = ({ addPosition,setShowPanel }) => {
+const EditForm = ({ activeGame }) => {
   let initialState = {
     name: "",
     minimumAge: "",
     minimumHeight: "",
     description: "",
     capacity: "",
-    x: "",
-    y: "",
-    width: "",
-    height: "",
     image: null,
   }
   const [formData, setFormData] = useState(initialState)
-
   const handleChange = (e) => {
     console.log()
     setFormData({
       ...formData,
-      x: addPosition.x,
-      y: addPosition.y,
       [e.target.name]: e.target.value,
     })
   }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const postData = new FormData()
+    const putData = new FormData()
+    
     Object.keys(formData).forEach((key) => {
-      postData.append(key, formData[key])
+      putData.append(key, formData[key])
     })
-    // console.log(postData)
-    const response = await axios.post(
-      "http://localhost:3001/games/new",
-      postData
-    )
-
-    setFormData({
-      initialState,
-    })
-    setShowPanel(false)
+    
+    await axios.put(`http://localhost:3001/games/${activeGame._id}`, putData)
   }
 
   const handleImageChange = (event) => {
     setFormData({ ...formData, image: event.target.files[0] })
+    console.log( event.target.files[0])
   }
+
   return (
     <div className="form">
       <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -55,8 +42,8 @@ const Form = ({ addPosition,setShowPanel }) => {
           type="text"
           id="name"
           name="name"
+          placeholder={activeGame.name}
           onChange={handleChange}
-          autoComplete="off"
           required
         />
         <br />
@@ -67,7 +54,7 @@ const Form = ({ addPosition,setShowPanel }) => {
           type="number"
           id="minimumAge"
           name="minimumAge"
-          // value={formData.minimumAge}
+          placeholder={activeGame.minimumAge}
           onChange={handleChange}
         />
         <br />
@@ -78,7 +65,7 @@ const Form = ({ addPosition,setShowPanel }) => {
           type="number"
           id="minimumHeight"
           name="minimumHeight"
-          // value={formData.minimumHeight}
+          placeholder={activeGame.minimumHeight}
           onChange={handleChange}
         />
         <br />
@@ -88,40 +75,11 @@ const Form = ({ addPosition,setShowPanel }) => {
         <textarea
           id="description"
           name="description"
-          // value={formData.description}
+          placeholder={activeGame.description}
           onChange={handleChange}
           required
         ></textarea>
         <br />
-
-        <label htmlFor="capacity">Capacity:</label>
-        <input
-          type="number"
-          id="capacity"
-          name="capacity"
-          // value={formData.capacity}
-          onChange={handleChange}
-          required
-        />
-
-        <label htmlFor="width">Width (px):</label>
-        <input
-          type="number"
-          id="width"
-          name="width"
-          // value={formData.width}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="height">Height (px):</label>
-        <input
-          type="number"
-          id="height"
-          name="height"
-          // value={formData.height}
-          onChange={handleChange}
-        />
-
         <label htmlFor="image">Image Upload:</label>
         <input
           type="file"
@@ -136,5 +94,4 @@ const Form = ({ addPosition,setShowPanel }) => {
     </div>
   )
 }
-
-export default Form
+export default EditForm
