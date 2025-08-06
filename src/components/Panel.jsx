@@ -10,6 +10,8 @@ const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
     await axios.delete(`http://localhost:3001/games/${activeGame._id}`)
     setShowPanel(false)
   }
+
+
   useEffect(() => {
     setView("menu")
   }, [x, y, activeGame])
@@ -52,7 +54,7 @@ const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
       )}
       {view === "Form" && (
         <>
-          <Form addPosition={addPosition} />
+          <Form addPosition={addPosition} setShowPanel={setShowPanel} />
         </>
       )}
     </div>

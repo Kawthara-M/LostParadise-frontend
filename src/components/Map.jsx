@@ -4,11 +4,11 @@ import Game from "./Game"
 import Panel from "./Panel"
 
 useRef
-const Map = ({ placedComponents, setShowPanel,showPanel }) => {
+const Map = ({ placedComponents, setShowPanel, showPanel }) => {
   // states to toggle panel
   const [panelPos, setPanelPos] = useState({ x: 0, y: 0 })
-  const [activeGame, setActiveGame] = useState(null);
-const [addPosition, setAddPosition] = useState(null);
+  const [activeGame, setActiveGame] = useState(null)
+  const [addPosition, setAddPosition] = useState(null)
 
   const mapUnit = 50
   const height = 15
@@ -51,9 +51,8 @@ const [addPosition, setAddPosition] = useState(null);
     setShowPanel(true)
   }
   const mapClick = (event) => {
-    
     console.log("Map clicked", event)
-    
+
     const mapCoordinates = {
       x: event.target.getBoundingClientRect().x,
       y: event.target.getBoundingClientRect().y,
@@ -62,19 +61,19 @@ const [addPosition, setAddPosition] = useState(null);
       x: event.clientX - mapCoordinates.x,
       y: event.clientY - mapCoordinates.y,
     }
-    
+
     const clickInCells = {
       x: Math.ceil(relativeClickCoordinates.x / mapUnit),
       y: Math.ceil(relativeClickCoordinates.y / mapUnit),
-    }    
-    
+    }
+
     const clickedGame = placedComponents.some(
       (game) =>
         game.coordinates.x === clickInCells.x &&
-      game.coordinates.y === clickInCells.y
+        game.coordinates.y === clickInCells.y
     )
     setAddPosition(clickInCells)
-    
+
     if (clickedGame) {
       handlePlaceClick(event, clickedGame)
     } else {
@@ -101,8 +100,12 @@ const [addPosition, setAddPosition] = useState(null);
             return (
               <>
                 {/* <div key={game._id} onClick={(e) => handlePlaceClick(e, game)}> */}
-                   {/* this division is causing the game positioning to now work, but when I remove it it does the onlick is wont work */}
-                  <Game game={game} key={game._id} onClick={(e) => handlePlaceClick(e, game)} />
+                {/* this division is causing the game positioning to now work, but when I remove it it does the onlick is wont work */}
+                <Game
+                  game={game}
+                  key={game._id}
+                  onClick={(e) => handlePlaceClick(e, game)}
+                />
                 {/* </div>   */}
                 {showPanel && (
                   <Panel

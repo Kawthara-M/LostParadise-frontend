@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
-const Form = ({ addPosition }) => {
+const Form = ({ addPosition,setShowPanel }) => {
   let initialState = {
     name: "",
     minimumAge: "",
@@ -35,11 +35,8 @@ const Form = ({ addPosition }) => {
       "http://localhost:3001/games/new",
       postData
     )
-
-    /*  setFormData({
-      initialState,
-    })*/
-  }
+    setShowPanel(false)
+}
 
   const handleImageChange = (event) => {
     setFormData({...formData, image:event.target.files[0]})
