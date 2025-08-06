@@ -51,9 +51,8 @@ const Map = ({ placedComponents, setShowPanel, showPanel }) => {
     setShowPanel(true)
   }
   const mapClick = (event) => {
-    
     console.log("Map clicked", event)
-    
+
     const mapCoordinates = {
       x: event.target.getBoundingClientRect().x,
       y: event.target.getBoundingClientRect().y,
@@ -62,19 +61,18 @@ const Map = ({ placedComponents, setShowPanel, showPanel }) => {
       x: event.clientX - mapCoordinates.x,
       y: event.clientY - mapCoordinates.y,
     }
-    
+
     const clickInCells = {
       x: Math.ceil(relativeClickCoordinates.x / mapUnit),
       y: Math.ceil(relativeClickCoordinates.y / mapUnit),
-    }    
-    
+    }
+
     const clickedGame = placedComponents.some(
       (game) =>
         game.coordinates.x === clickInCells.x &&
         game.coordinates.y === clickInCells.y
     )
-    setAddPosition(clickInCells)
-    
+
     if (clickedGame) {
       handlePlaceClick(event, clickedGame)
     } else {
@@ -86,7 +84,6 @@ const Map = ({ placedComponents, setShowPanel, showPanel }) => {
         x: event.clientX,
         y: event.clientY,
       })
-      console.log(panelPos)
     }
   }
   return (
