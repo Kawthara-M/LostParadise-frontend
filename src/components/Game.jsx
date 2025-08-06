@@ -1,9 +1,7 @@
 import globals from "./../globals.json"
 const Game = ({ game,onClick }) => {
   const backendBaseUrl = "http://localhost:3001"
-  {
-    console.log(game)
-  }
+
   return (
     
       <img

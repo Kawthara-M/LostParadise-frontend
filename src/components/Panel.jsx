@@ -11,6 +11,8 @@ const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
     await axios.delete(`http://localhost:3001/games/${activeGame._id}`)
     setShowPanel(false)
   }
+
+
   useEffect(() => {
     setView("menu")
   }, [x, y, activeGame])
@@ -18,7 +20,9 @@ const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
   return (
     <div
       className="panel panel-absolute "
-      onClick={(e) => e.stopPropagation()}
+      onClick={(e) =>{ e.stopPropagation()
+        // setShowPanel(false)
+      }}
       style={{ top: `${y}px`, left: `${x}px` }}
     >
       {view === "menu" && (
@@ -53,7 +57,7 @@ const Panel = ({ x, y, activeGame, setShowPanel, addPosition }) => {
       )}
       {view === "Form" && (
         <>
-          <Form addPosition={addPosition} />
+          <Form addPosition={addPosition} setShowPanel={setShowPanel} />
         </>
       )}
     </div>

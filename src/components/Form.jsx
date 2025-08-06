@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
-const Form = ({ addPosition }) => {
+const Form = ({ addPosition,setShowPanel }) => {
   let initialState = {
     name: "",
     minimumAge: "",
@@ -19,8 +19,8 @@ const Form = ({ addPosition }) => {
     console.log()
     setFormData({
       ...formData,
-      x:addPosition.x,
-      y:addPosition.y,
+      x: addPosition.x,
+      y: addPosition.y,
       [e.target.name]: e.target.value,
     })
   }
@@ -37,13 +37,14 @@ const Form = ({ addPosition }) => {
       postData
     )
 
-    /*  setFormData({
+    setFormData({
       initialState,
-    })*/
+    })
+    setShowPanel(false)
   }
 
   const handleImageChange = (event) => {
-    setFormData({...formData, image:event.target.files[0]})
+    setFormData({ ...formData, image: event.target.files[0] })
   }
   return (
     <div className="form">
@@ -55,6 +56,7 @@ const Form = ({ addPosition }) => {
           id="name"
           name="name"
           onChange={handleChange}
+          autoComplete="off"
           required
         />
         <br />
@@ -102,7 +104,7 @@ const Form = ({ addPosition }) => {
           required
         />
 
-        <label htmlFor="width">Width:</label>
+        <label htmlFor="width">Width (px):</label>
         <input
           type="number"
           id="width"
@@ -111,7 +113,7 @@ const Form = ({ addPosition }) => {
           onChange={handleChange}
         />
 
-        <label htmlFor="height">Height:</label>
+        <label htmlFor="height">Height (px):</label>
         <input
           type="number"
           id="height"
